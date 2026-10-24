@@ -1,0 +1,17 @@
+
+services:
+  db:
+    image: postgres:17
+    container_name: ecommerce_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ecommerce}
+      POSTGRES_USER: ${POSTGRES_USER:-ecommerce_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no ambiente ou no arquivo .env do Docker Compose}
+    ports:
+      - "5434:5432"
+    volumes:
+      - ecommerce_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  ecommerce_postgres_data:
