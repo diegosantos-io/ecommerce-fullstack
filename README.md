@@ -2,6 +2,27 @@
 
 A full-stack e-commerce application built with FastAPI, React, PostgreSQL, and Stripe. This project demonstrates REST API development, authentication, shopping cart management, payment processing, and automated testing.
 
+## Application Screenshots
+
+### Login
+![E-commerce login page](docs/images/login.png)
+
+### Product Catalog
+![Product catalog](docs/images/catalog.png)
+
+### Shopping Cart
+![Shopping cart](docs/images/cart.png)
+
+### Product Added to Cart
+![Product added confirmation](docs/images/cart-feedback.png)
+
+### Stripe Checkout
+![Stripe checkout page](docs/images/stripe-checkout.png)
+
+### Payment Confirmation
+![Payment success page](docs/images/payment-success.png)
+
+
 ## Features
 
 - User registration and authentication with JWT
