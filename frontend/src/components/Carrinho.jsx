@@ -221,6 +221,7 @@ export default function Carrinho() {
         </div>
       ) : (
         <>
+        <div className="carrinho-layout">
           <div className="carrinho-lista">
             {itens.map((item) => (
               <article
@@ -362,6 +363,7 @@ export default function Carrinho() {
               ← Continuar comprando
             </Link>
           </aside>
+        </div>
         </>
       )}
 

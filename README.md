@@ -2,21 +2,21 @@
 
 A full-stack e-commerce application built with **FastAPI, React, PostgreSQL, and Stripe**. This project demonstrates REST API development, authentication, shopping cart management, payment processing, email notifications, database migrations, and automated testing.
 
-The application includes a responsive product catalog, product images, cart management, Stripe checkout, and payment confirmation workflows.
+The application includes a responsive product catalog, product images, cart management, Stripe Checkout, and payment confirmation workflows.
 
 ## Application Screenshots
-
-### Product Catalog
-
-Browse gaming products, view product details and prices, and add items to the shopping cart.
-
-![E-commerce product catalog](docs/images/catalog.png)
 
 ### Login
 
 User authentication interface.
 
 ![E-commerce login page](docs/images/login.png)
+
+### Product Catalog
+
+Browse gaming products, view product details and prices, and add items to the shopping cart.
+
+![E-commerce product catalog](docs/images/catalog.png)
 
 ### Shopping Cart
 
@@ -61,6 +61,7 @@ Payment success page after completing a test transaction.
 ## Tech Stack
 
 ### Backend
+
 - Python
 - FastAPI
 - SQLAlchemy
@@ -72,6 +73,7 @@ Payment success page after completing a test transaction.
 - Pytest
 
 ### Frontend
+
 - React
 - Vite
 - JavaScript
@@ -80,6 +82,7 @@ Payment success page after completing a test transaction.
 - Automated component tests
 
 ### Infrastructure and Integrations
+
 - Docker and Docker Compose
 - Stripe test mode
 - SMTP email integration
@@ -104,8 +107,8 @@ ecommerce-fullstack/
 │   └── vite.config.js
 └── docs/
     └── images/
-        ├── catalog.png
         ├── login.png
+        ├── catalog.png
         ├── cart.png
         ├── cart-feedback.png
         ├── stripe-checkout.png
@@ -217,7 +220,7 @@ From the `backend` directory, activate the virtual environment and run:
 python -m pytest tests -v
 ```
 
-The backend test suite has passed **40 tests** in the current verified test run.
+The backend test suite passed **40 tests** in the latest verified test run.
 
 Some integration tests require a dedicated test database. Configure the test environment according to the project settings and never run tests against a production database.
 
@@ -229,7 +232,7 @@ From the project root, run:
 npm --prefix ./frontend test
 ```
 
-The frontend test suite has passed **10 tests** in the current verified test run.
+The frontend test suite passed **10 tests** in the latest verified test run.
 
 ### Frontend Quality Checks
 
@@ -245,7 +248,7 @@ Build the frontend for production:
 npm --prefix ./frontend run build
 ```
 
-Both checks passed in the current verified run.
+Both checks passed in the latest verified run.
 
 ## Security Considerations
 

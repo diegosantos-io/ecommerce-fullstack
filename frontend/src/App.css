@@ -91,12 +91,12 @@ button {
 
 .hero {
   max-width: 1200px;
-  min-height: 530px;
+  min-height: 380px;
   margin: auto;
-  padding: 76px 32px;
+  padding: 40px 32px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
+  align-items: start;
   gap: 48px;
 }
 
@@ -246,9 +246,14 @@ footer {
   }
 
   .hero {
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 55px 24px;
+    max-width: 1200px;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 12px 32px 40px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+    gap: 48px;
   }
 
   .hero h1 {
@@ -681,11 +686,13 @@ footer {
   font-size: 0.9rem;
 }
 
+
 .store-home {
   width: min(1200px, 100%);
   margin: 0 auto;
-  padding: 64px 32px 80px;
+  padding: 24px 32px 80px;
 }
+
 
 .store-welcome {
   margin-bottom: 48px;
@@ -770,6 +777,42 @@ footer {
 .carrinho-vazio > p {
   color: #b8b6c9;
 }
+
+.carrinho-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: center;
+  gap: 24px;
+}
+
+
+.carrinho-resumo {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 380px;
+  margin: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 24px;
+  border: 1px solid #302b3c;
+  border-radius: 16px;
+  background: #17151e;
+}
+
+
+
+@media (max-width: 800px) {
+  .carrinho-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .carrinho-resumo {
+    position: static;
+  }
+}
+
 
 .carrinho-lista {
   display: flex;
