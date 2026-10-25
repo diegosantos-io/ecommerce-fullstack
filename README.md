@@ -1,40 +1,62 @@
-﻿# E-commerce Full Stack
+# E-commerce Full Stack
 
-A full-stack e-commerce application built with FastAPI, React, PostgreSQL, and Stripe. This project demonstrates REST API development, authentication, shopping cart management, payment processing, and automated testing.
+A full-stack e-commerce application built with **FastAPI, React, PostgreSQL, and Stripe**. This project demonstrates REST API development, authentication, shopping cart management, payment processing, email notifications, database migrations, and automated testing.
+
+The application includes a responsive product catalog, product images, cart management, Stripe checkout, and payment confirmation workflows.
 
 ## Application Screenshots
 
+### Product Catalog
+
+Browse gaming products, view product details and prices, and add items to the shopping cart.
+
+![E-commerce product catalog](docs/images/catalog.png)
+
 ### Login
+
+User authentication interface.
+
 ![E-commerce login page](docs/images/login.png)
 
-### Product Catalog
-![Product catalog](docs/images/catalog.png)
-
 ### Shopping Cart
-![Shopping cart](docs/images/cart.png)
+
+Review selected products, update quantities, remove items, and check the order subtotal.
+
+![E-commerce shopping cart](docs/images/cart.png)
 
 ### Product Added to Cart
-![Product added confirmation](docs/images/cart-feedback.png)
+
+Visual feedback after adding a product to the shopping cart.
+
+![Product added to cart confirmation](docs/images/cart-feedback.png)
 
 ### Stripe Checkout
+
+Secure checkout experience using Stripe test mode.
+
 ![Stripe checkout page](docs/images/stripe-checkout.png)
 
 ### Payment Confirmation
-![Payment success page](docs/images/payment-success.png)
 
+Payment success page after completing a test transaction.
+
+![Payment success page](docs/images/payment-success.png)
 
 ## Features
 
-- User registration and authentication with JWT
-- Product catalog and category management
-- Shopping cart management
+- User registration and JWT-based authentication
+- Product catalog with product images and pricing
+- Product and category management
+- Shopping cart management and quantity updates
 - Order creation and order status tracking
-- Stripe payment integration and webhook processing
-- Webhook idempotency to prevent duplicate event processing
+- Stripe Checkout integration
+- Stripe webhook processing and idempotency handling
 - Email notifications and background email processing
 - Password reset workflow
-- PostgreSQL database and Alembic migrations
-- Automated backend tests
+- PostgreSQL database integration
+- Database schema migrations with Alembic
+- Automated backend and frontend tests
+- Responsive user interface
 
 ## Tech Stack
 
@@ -53,12 +75,15 @@ A full-stack e-commerce application built with FastAPI, React, PostgreSQL, and S
 - React
 - Vite
 - JavaScript
-- HTML and CSS
+- HTML
+- CSS
+- Automated component tests
 
-### Infrastructure and integrations
+### Infrastructure and Integrations
 - Docker and Docker Compose
 - Stripe test mode
 - SMTP email integration
+- Git and GitHub
 
 ## Project Structure
 
@@ -71,81 +96,70 @@ ecommerce-fullstack/
 │   ├── .env.example
 │   ├── docker-compose.yml
 │   └── requirements.txt
-└── frontend/
-    ├── public/
-    ├── src/
-    ├── package.json
-    └── vite.config.js
+├── frontend/
+│   ├── public/
+│   │   └── images/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+└── docs/
+    └── images/
+        ├── catalog.png
+        ├── login.png
+        ├── cart.png
+        ├── cart-feedback.png
+        ├── stripe-checkout.png
+        └── payment-success.png
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.12 or a compatible version supported by the dependencies
+- Python 3.12 or another version supported by the project dependencies
 - Node.js and npm
 - Docker Desktop
 - A Stripe account for payment testing
 - SMTP credentials for email functionality
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/diegosantos-io/ecommerce-fullstack.git
 cd ecommerce-fullstack
 ```
 
-### 2. Configure the backend
+### 2. Configure the Backend
 
-```bash
+Open a terminal in the project root and run:
+
+```powershell
 cd backend
 python -m venv venv
-```
-
-Activate the virtual environment on Windows PowerShell:
-
-```powershell
 .\venv\Scripts\Activate.ps1
-```
-
-Install dependencies:
-
-```bash
 python -m pip install -r requirements.txt
-```
-
-Create your local environment file from the example:
-
-```powershell
 Copy-Item .env.example .env
 ```
 
-Update `.env` with your own database URL, JWT secret, Stripe test credentials, and SMTP settings. Never commit your real `.env` file.
+Configure your local `.env` file with the appropriate database connection, JWT secret, Stripe test credentials, and SMTP settings.
 
+Use unique local credentials and keep your `.env` file private. Never commit real secrets to GitHub.
 
 ### 3. Start PostgreSQL
 
-From the `backend` directory, create your local environment file:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Edit `.env` and set a strong, unique local value for `POSTGRES_PASSWORD`. Keep this file private and never commit it.
-
-The Compose configuration reads variables from `.env` when running Docker Compose. The database settings in `DATABASE_URL` must match the database name, username, password, host, and port configured for your local environment.
-
-Validate the Compose configuration:
+From the `backend` directory, validate the Docker Compose configuration:
 
 ```bash
 docker compose config --quiet
 ```
 
-Start PostgreSQL:
+Start the database service:
 
 ```bash
 docker compose up -d db
 ```
+
+Ensure that the database is running and that the connection settings match your local `.env` configuration.
 
 Apply database migrations:
 
@@ -153,76 +167,109 @@ Apply database migrations:
 alembic upgrade head
 ```
 
+### 4. Start the Backend API
 
-### 4. Start the backend API
-
-From the `backend` directory:
+Keep the backend virtual environment activated and run:
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-The API is expected to be available at:
+The API should be available at:
 
-http://localhost:8000
+- API: http://localhost:8000
+- Interactive API documentation: http://localhost:8000/docs
 
-FastAPI interactive documentation:
+### 5. Start the Frontend
 
-http://localhost:8000/docs
+Open a separate terminal in the project root:
 
-### 5. Start the frontend
-
-Open a separate terminal:
-
-```bash
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite in the terminal.
+Open the local URL displayed by Vite.
 
 ## Stripe Payment Testing
 
-Use Stripe test-mode credentials and test payment methods only. Configure the webhook endpoint to point to the payment webhook route implemented by the backend.
+The application integrates with Stripe for checkout and payment processing.
 
-The backend includes webhook processing designed to avoid duplicate event handling. Configure the Stripe CLI or Stripe Dashboard according to your local development setup.
+For local testing:
 
-Never use production secret keys in local examples or commit them to version control.
+1. Configure Stripe test-mode credentials in the backend environment.
+2. Configure a webhook endpoint using the payment webhook route implemented by the backend.
+3. Use the Stripe CLI or Stripe Dashboard to deliver test webhook events, according to your setup.
+4. Verify the order status and email confirmation after a successful test payment.
+
+The backend includes webhook idempotency handling intended to prevent duplicate processing of the same event.
+
+**Use test credentials and test payment methods during development. Never expose production secret keys or commit credentials to version control.**
 
 ## Running Tests
+
+### Backend Tests
 
 From the `backend` directory, activate the virtual environment and run:
 
 ```bash
-python -m pytest .\tests -v
+python -m pytest tests -v
 ```
 
-Some integration tests require a separately configured test database and appropriate environment variables. Do not run tests against a production database.
+The backend test suite has passed **40 tests** in the current verified test run.
 
-## Security Notes
+Some integration tests require a dedicated test database. Configure the test environment according to the project settings and never run tests against a production database.
 
-- Keep `.env` files out of version control.
-- Use unique, strong secrets for JWT authentication.
+### Frontend Tests
+
+From the project root, run:
+
+```bash
+npm --prefix ./frontend test
+```
+
+The frontend test suite has passed **10 tests** in the current verified test run.
+
+### Frontend Quality Checks
+
+Run the linter:
+
+```bash
+npm --prefix ./frontend run lint
+```
+
+Build the frontend for production:
+
+```bash
+npm --prefix ./frontend run build
+```
+
+Both checks passed in the current verified run.
+
+## Security Considerations
+
+- Keep `.env` files and credentials out of version control.
+- Use strong, unique secrets for JWT authentication.
 - Use Stripe test credentials during development.
-- Keep email credentials private.
+- Keep SMTP credentials private.
 - Use a dedicated test database for automated tests.
+- Review environment variables and production settings before deployment.
 
 ## Roadmap
 
-- Improve automated frontend testing
-- Add deployment configuration
-- Add screenshots and a live demo
-- Expand API documentation
+- Configure and validate a production deployment.
+- Publish a live demo.
+- Expand API documentation where needed.
+- Continue improving test coverage and security checks.
 
 ## Author
 
-Diego Santos
+**Diego Santos**
 
-GitHub: https://github.com/diegosantos-io
-
-LinkedIn: https://www.linkedin.com/in/diego-santos-3352a92a8/
+- GitHub: https://github.com/diegosantos-io
+- LinkedIn: https://www.linkedin.com/in/diego-santos-3352a92a8/
 
 ---
 
-This project was developed for learning and portfolio purposes.
+This project was developed for learning and portfolio purposes, demonstrating full-stack development, payment integration, database management, and automated testing.
