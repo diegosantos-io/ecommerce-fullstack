@@ -16,19 +16,19 @@ User authentication interface.
 
 Browse gaming products, view product details and prices, and add items to the shopping cart.
 
-![E-commerce product catalog](docs/images/catalog.png)
+![E-commerce product catalog](docs/images/catalog.png?v=2)
 
 ### Shopping Cart
 
 Review selected products, update quantities, remove items, and check the order subtotal.
 
-![E-commerce shopping cart](docs/images/cart.png)
+![E-commerce shopping cart](docs/images/cart.png?v=2)
 
 ### Product Added to Cart
 
 Visual feedback after adding a product to the shopping cart.
 
-![Product added to cart confirmation](docs/images/cart-feedback.png)
+![Product added to cart confirmation](docs/images/cart-feedback.png?v=2)
 
 ### Stripe Checkout
 
