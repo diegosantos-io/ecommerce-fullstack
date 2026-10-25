@@ -124,7 +124,7 @@ export default function Catalogo() {
 
               <div className="produto-info">
                 <span className="produto-categoria">
-                  Produto #{produto.categoria_id}
+                  Produto #{produto.id}
                 </span>
 
                 <h3>{produto.nome}</h3>
